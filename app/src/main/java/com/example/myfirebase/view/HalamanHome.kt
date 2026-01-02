@@ -35,8 +35,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myfirebase.R
-import com.example.myfirebase.model.Siswa
-import com.example.myfirebase.navigasi.DestinasiHome
+import com.example.myfirebase.modeldata.Siswa
+import com.example.myfirebase.view.route.DestinasiHome
 import com.example.myfirebase.viewmodel.HomeViewModel
 import com.example.myfirebase.viewmodel.PenyediaViewModel
 import com.example.myfirebase.viewmodel.StatusUiSiswa
