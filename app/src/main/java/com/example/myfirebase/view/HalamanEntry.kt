@@ -25,10 +25,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myfirebase.R
 import com.example.myfirebase.modeldata.DetailSiswa
-import com.example.myfirebase.navigasi.DestinasiEntry
+import com.example.myfirebase.modeldata.UIStateSiswa
+import com.example.myfirebase.view.route.DestinasiEntry
 import com.example.myfirebase.viewmodel.EntryViewModel
 import com.example.myfirebase.viewmodel.PenyediaViewModel
-import com.example.myfirebase.viewmodel.UIStateSiswa
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
