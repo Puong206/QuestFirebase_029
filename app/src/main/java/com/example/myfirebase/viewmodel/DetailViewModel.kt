@@ -1,5 +1,8 @@
 package com.example.myfirebase.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.myfirebase.modeldata.Siswa
@@ -16,4 +19,6 @@ class DetailViewModel(savedStateHandle: SavedStateHandle, private val repository
     ViewModel() {
         private val idSiswa: Long =
             savedStateHandle.get<String>(DestinasiDetail.itemIdArg)?.toLong()?: error("idSiswa tidak ditemukan di SavedStateHandle")
+        var statusUIDetail: StatusUIDetail by mutableStateOf(StatusUIDetail.Loading)
+            private set
 }
