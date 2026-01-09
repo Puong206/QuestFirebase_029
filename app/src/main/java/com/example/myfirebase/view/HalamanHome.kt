@@ -44,8 +44,10 @@ import com.example.myfirebase.viewmodel.StatusUiSiswa
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    //edit 1.1 : tambahkan parameter navigateToItemEntry
     navigateToItemEntry: () -> Unit,
-    navigateToItemUpdate: (Int) -> Unit,
+    //edit 2.4 : tambahkan parameter navigateToItemUpdate
+    navigateToItemUpdate: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -87,7 +89,8 @@ fun HomeScreen(
 @Composable
 fun HomeBody(
     statusUiSiswa: StatusUiSiswa,
-    onSiswaClick: (Int) -> Unit,
+    //edit 2.3 tambahkan parameter onSiswaClick
+    onSiswaClick: (String) -> Unit,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ){
@@ -97,8 +100,9 @@ fun HomeBody(
     ){
         when(statusUiSiswa){
             is StatusUiSiswa.Loading -> LoadingScreen()
+            //edit 2.5 : tambahkan event onSiswaClick
             is StatusUiSiswa.Success -> DaftarSiswa(itemSiswa = statusUiSiswa.siswa ,
-                onSiswaClick = {onSiswaClick(it.id.toInt())})
+                onSiswaClick = {onSiswaClick(it.id)} )
             is StatusUiSiswa.Error -> ErrorScreen(
                 retryAction,
                 modifier = modifier.fillMaxSize()
@@ -133,6 +137,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 @Composable
 fun DaftarSiswa(
     itemSiswa : List<Siswa>,
+    //edit 2.1 : tambahkan parameter onSiswaClick
     onSiswaClick: (Siswa) -> Unit,
     modifier: Modifier=Modifier
 ){
@@ -143,6 +148,7 @@ fun DaftarSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
+                    //edit 2.2 jadikan itemsiswa menjadi clickable()
                     .clickable { onSiswaClick(person) }
             )
         }

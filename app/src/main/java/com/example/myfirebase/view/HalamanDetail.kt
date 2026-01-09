@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailSiswaScreen(
-    navigateToEditItem: (Int) -> Unit,
+    navigateToEditItem: (String) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -62,7 +62,7 @@ fun DetailSiswaScreen(
             FloatingActionButton(
                 onClick = {
                     when(uiState){ is StatusUIDetail.Success ->
-                        navigateToEditItem(uiState.satusiswa!!.id.toInt()) else ->{}
+                        navigateToEditItem(uiState.satusiswa!!.id) else ->{}
                     }
                 },
                 shape = MaterialTheme.shapes.medium,
@@ -134,6 +134,8 @@ private fun BodyDetailDataSiswa(
 fun DetailDataSiswa(
     siswa: Siswa?, modifier: Modifier = Modifier
 ) {
+    if (siswa == null) return
+    
     Card(
         modifier = modifier, colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -148,7 +150,7 @@ fun DetailDataSiswa(
         ) {
             BarisDetailData(
                 labelResID = R.string.nama1,
-                itemDetail = siswa!!.nama,
+                itemDetail = siswa.nama,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen.padding_medium
