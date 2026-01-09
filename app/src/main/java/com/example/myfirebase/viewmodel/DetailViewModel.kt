@@ -21,4 +21,10 @@ class DetailViewModel(savedStateHandle: SavedStateHandle, private val repository
             savedStateHandle.get<String>(DestinasiDetail.itemIdArg)?.toLong()?: error("idSiswa tidak ditemukan di SavedStateHandle")
         var statusUIDetail: StatusUIDetail by mutableStateOf(StatusUIDetail.Loading)
             private set
+        init {
+            getSatuSiswa()
+        }
+        fun getSatuSiswa() {
+
+        }
 }
