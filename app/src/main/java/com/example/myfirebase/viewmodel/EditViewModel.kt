@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myfirebase.modeldata.DetailSiswa
 import com.example.myfirebase.modeldata.UIStateSiswa
 import com.example.myfirebase.modeldata.toUIStateSiswa
 import com.example.myfirebase.repositori.RepositorySiswa
@@ -22,6 +23,12 @@ class EditViewModel(savedStateHandle: SavedStateHandle, private val repositorySi
         viewModelScope.launch {
             uiStateSiswa = repositorySiswa.getSatuSiswa(idSiswa)!!
                 .toUIStateSiswa()
+        }
+    }
+
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
+        return with(uiState) {
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
     }
 }
