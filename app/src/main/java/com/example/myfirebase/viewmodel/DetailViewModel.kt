@@ -5,9 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myfirebase.modeldata.Siswa
 import com.example.myfirebase.repositori.RepositorySiswa
 import com.example.myfirebase.view.route.DestinasiDetail
+import kotlinx.coroutines.launch
 
 sealed interface StatusUIDetail {
     data class Success(val satusiswa: Siswa?) : StatusUIDetail
@@ -25,6 +27,15 @@ class DetailViewModel(savedStateHandle: SavedStateHandle, private val repository
             getSatuSiswa()
         }
         fun getSatuSiswa() {
-
+            viewModelScope.launch {
+                statusUIDetail = StatusUIDetail.Loading
+                statusUIDetail = try {
+                    StatusUIDetail.Success(repositorySiswa.getSatuSiswa(idSiswa))
+                } catch (e: Exception) {
+                    StatusUIDetail.Error
+                } catch (e: Exception) {
+                    StatusUIDetail.Error
+                }
+            }
         }
 }
